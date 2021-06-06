@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>데이터 분석과 활용 이해하기</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="이건승" />
+    <meta name="date" content="2021-06-06" />
+    <script src="lecture01_files/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# 데이터 분석과 활용 이해하기
+## SK NEW SCHOOL - MD학과
+### 이건승
+### 2021-06-06
+
+---
+
+
+
+
+
+
+## 데이터 기반 의사결정
+
+###비즈니스에서는 항상 **.red['문제']**에 직면하며, **.red['문제']**를 해결하기 위해 **.blue['결정']**을 내린다.
+
+.pull-left[
+&lt;img src ="fig1.png", width = "80%" /&gt;
+]
+
+.pull-right[
+&lt;img src ="fig2.png", width = "80%" /&gt;
+
+]
+
+---
+
+class:top
+
+# 데이터 분석에 관한 오해
+
+--
+
+###.center[.red[데이터 분석은 이공계 쪽의 전문 분야가 아닌가요?]]
+
+--
+
+###.center[.red[MD가 데이터 분석 능력이 있어야 하나요?]]
+
+--
+
+###.center[.red[데이터 분석을 하려면 특별한 '지식'이 필요한 게 아닌가요?]]
+
+--
+
+.center[&lt;img src ="fig3.png", width = "65%" /&gt;]
+
+
+---
+
+## 데이터 분석에 관한 오해
+
+###**데이터 분석이 중요하다면, MD도 데이터 분석을 직접 해야 할까요?**
+
+.center[&lt;img src ="fig5.png", width = "60%" /&gt;]
+
+---
+
+## 데이터 분석에 관한 오해
+
+###**데이터 분석이 중요하다면, MD도 데이터 분석을 직접 해야 할까요?**
+
+.center[&lt;img src ="fig6.png", width = "90%" /&gt;]
+
+---
+
+## 데이터 분석에 관한 오해
+
+
+&lt;img src="fig7.png" width="100%" /&gt;
+
+.pull-left[
+*  #### 문제 정의 능력   
+*  #### 데이터 추출/가공
+*  #### 데이터 분석력
+*  #### 커뮤니케이션 스킬
+]
+
+.pull-right[
+* #### 데이터의 구성: 신호 + 잡음   
+]
+
+---
+class: inverse center top
+
+# 데이터 리터러시 &lt;br&gt;(Data Literacy)
+
+### 데이터를 해석하고 목적에 맞게 활용할 수 있는 능력
+
+.pull-left[
+### .yellow[1) 문제 정의 능력]
+#### 데이터를 통해 풀고자 하는 문제를&lt;br&gt;정확하게 정의할 수 있어야 한다.
+]
+
+.pull-left[
+### .yellow[2) 데이터 추출/가공]
+#### 정의된 문제에 필요한 데이터를 추출,&lt;br&gt;분석할 수 있는 형태로 가공하야 한다.
+]
+
+.pull-left[
+### .yellow[3) 데이터 분석력]
+#### 수집/가공된 데이터에서 의미있는&lt;br&gt;신호, 패턴을 찾을 수 있어야 한다.
+
+]
+
+.pull-left[
+### .yellow[4) 커뮤니케이션 스킬]
+#### 분석된 결과를 공유할 수 있어야 한다.
+]
+
+---
+
+class: inverse center top
+
+# 통계적 사고 &lt;br&gt;(Statistical Thinking)
+
+### 데이터에서 .orange['신호']와 .orange['잡음']을 구분해서 생각
+
+--
+
+.center[&lt;img src ="fig8.png", width = "40%" /&gt;]
+
+---
+
+class: inverse center top
+
+# 데이터 분석에 관한 오해&lt;br&gt; &lt;br&gt;
+
+.center[&lt;img src ="fig9.png", width = "90%" /&gt;]
+
+---
+class: left top
+
+## 데이터 분석 과정은 이렇게 구성되어 있습니다.
+
+.center[&lt;img src ="fig10.png", width = "80%" /&gt;]
+
+*  #### 데이터베이스에서 데이터를 추출할 수 있는 `SQL` 언어를 배웁니다.
+*  #### 추출한 데이터를 분석하고 시각화, 자동화 할 수 있는 `R`프로그래밍 언어를 배웁니다.
+*  #### 자신만의 데이터 분석 프로젝트를 수행하고 이를 공유합니다.
+
+---
+
+## 실무에서 'SQL'과 'R'을 할 수 있는 MD가 된다면?
+
+--
+
+### 1. 정말로 할 수 있냐고 의심을 받습니다.
+ - 현장에서 아직까지 MD가 SQL과 R을 할 수 있는 사람은 없었습니다. 다만, 배우고자 하려는 MD는 많습니다.
+
+--
+
+### 2. MD 조직이 아닌 데이터 분석 조직에서 일을 하게 될 수도 있습니다.
+- R과 SQL을 능숙히 하는 데이터 분석가, 데이터 마케터도 흔한 것은 아닙니다.
+ 
+--
+
+### 3. 커리어에 강력한 무기가 될 수 있습니다.
+
+---
+
+## 이 수업을 통해 여러 분이 얻길 바라는 점
+
+--
+
+### 1. 수업을 100% 이해하며 따라오지 못하여도 상관 없습니다.
+
+--
+
+### 2. 스스로 학습하는 능력과 데이터 분석과 활용이 무엇인지 느꼈으면 좋겠습니다.
+
+--
+
+### 3. SQL과 R이라는 도구를 'EXCEL' 처럼 생각할 수 있었으면 좋겠습니다.
+
+--
+
+### 4. 데이터를 활용하는 즐거움을 느낄 수 있었으면 좋겠습니다.
+
+--
+
+### 5. 배운 것 중에 단, 하나라도 자기의 것으로 만들 수 있었으면 좋겠습니다.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2022.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+    td.td1 {width: 36.2px; margin: 0.5px 0.5px 0.5px 0.5px; padding: 1.0px 1.0px 1.0px 1.0px}
+    td.td2 {width: 222.4px; margin: 0.5px 0.5px 0.5px 0.5px; padding: 1.0px 1.0px 1.0px 1.0px}
+  </style>
+</head>
+<body>
+<table cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p1"><span class="s1">&lt;style&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">.logo {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">background-image: url(newschool_logo.png);</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">background-size: contain;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">background-repeat: no-repeat;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">position: absolute;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">top: 0em;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">right: 1em;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">width: 139px;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">height: 135px;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">z-index: 0;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">&lt;/style&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">&lt;script&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">document</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">.querySelectorAll(</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">'.remark-slide-content' +</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">':not(.title-slide)' +</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">// add additional classes to exclude here, e.g.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">// ':not(.inverse)' +</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">':not(.hide-logo)'</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">.forEach(el =&gt; {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">el.innerHTML += '&lt;div class="logo"&gt;&lt;/div&gt;';</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">});</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">&lt;/script&gt;</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

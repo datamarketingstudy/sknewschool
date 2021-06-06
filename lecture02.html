@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>데이터 추출하기 01</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="이건승" />
+    <meta name="date" content="2021-06-06" />
+    <script src="lecture02_files/header-attrs/header-attrs.js"></script>
+    <script src="lecture02_files/kePrint/kePrint.js"></script>
+    <link href="lecture02_files/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# 데이터 추출하기 01
+## SK NEW SCHOOL - MD학과
+### 이건승
+### 2021-06-06
+
+---
+
+
+
+
+
+
+## SQL (Structured Query Language)
+
+### `SQL`은 &lt;u&gt;관계형 `데이터베이스`의 표준 언어&lt;/u&gt;이다.&lt;br&gt;(참고) `영어`는 `영미권`의 표준 언어이다.
+
+* #### `SQL`은 &lt;u&gt;구조적(structured)&lt;/u&gt;이고, &lt;u&gt;집합적(set-based)&lt;/u&gt;이고 &lt;u&gt;선언적(declarative)&lt;/u&gt;인 언어다.
+  1. 원하는 결과 집합을 구조에 맞춰 질의할 뿐, 구체적인 프로세싱 과정은 프로그래밍하지 않아도 된다.
+  1. 자연어에 가까운 언어이기 때문에, 프로그래머가 아니더라도 쉽게 접근할 수 있다.
+
+.pull-left[
+&lt;img src ="https://cdn.imweb.me/upload/S202001214518cd35c47e7/a6fbab9af40d4.jpg", width = "70%" /&gt;
+]
+
+.pull-right[
+&lt;img src ="https://media.vlpt.us/images/kwonhl0211/post/94dc833a-25a6-4a6a-ae21-be1006299878/103292935-3997c500-4a32-11eb-89c1-922f39bc9e14.png", width = "120%" /&gt;
+
+]
+
+---
+class: inverse center middle
+
+# 실습 환경 구축하기
+
+```
+SQL 설치 및 실습 테이블 구축
+```
+
+---
+class: inverse left top
+
+# SQL 설치하기
+
+### SQL은 SQL이라는 문법을 사용해서 RDBMS를 이용할 수 있다.&lt;br&gt;RDBMS는 여러 종류가 있으며, 기본적 구조는 동일하나 약간의 차이는 존재한다.
+
+#### 대표적인 SQL 기반 RDBMS 종류
+
+.pull-left[
+[RDBMS 환경의 SQL]
+&lt;img src ="https://img.taling.me/Content/Uploads/Blog/0598ace1d089d6768e7f549f848d8273ab399d28.png", width = "90%" /&gt;
+]
+
+.pull-right[
+[클라우드 환경의 SQL]
+&lt;img src ="cloudsql.png", width = "90%" /&gt;
+]
+
+---
+
+### PostgreSQL 설치  
+
+#### PostgreSQL은 오픈 소스(Open Source)로 누구나 .blue[무료]로 사용할 수 있는 데이터베이스 시스템
+
+.pull-left[
+&lt;img src ="https://media.vlpt.us/images/may_soouu/post/539844c3-b496-4797-9841-617a1d42749f/post.jpeg", width = 90%&gt;
+]
+
+.pull-right[
+
+&lt;img src ="fig11.png", width = 100%&gt;
+`PostgreSQL` 페이지에서 OS에 맞는 프로그램 다운로드
+
+]
+
+### 다음 &lt;u&gt;[**링크**](https://github.com/yihui/xaringan)&lt;/u&gt;로 접속하여, 사용하는 OS에 맞춰 다운로드 진행
+
+---
+
+### PostgreSQL 설치  
+
+#### 다운로드 받은 파일을 실행하면 아래와 같은 설치 화면이 나오고, 'next' 버튼을 눌러 다음 단계로 진행
+
+.pull-left[
+&lt;img src ="fig12.png", width = 90%&gt;
+]
+
+.pull-right[
+
+&lt;img src ="fig13.png", width = 90%&gt;
+
+]
+
+`password` 설정화면에서는 설치가 완료되면 **데이터베이스에 접속할 때 필요한 비밀번호**이므로 설정 후 반드시 기록
+
+---
+
+### PostgreSQL 설치  
+
+#### 다음 화면은 포트를 설정하는 화면으로, .red['5432']로 그대로 설정하여 진행
+
+.pull-left[
+&lt;img src ="fig14.png", width = 90%&gt;
+]
+
+.pull-right[
+
+&lt;img src ="fig15.png", width = 90%&gt;
+
+]
+
+오른쪽 화면에서는 **'Stack Builder may be user ~~~'** 부분은 **.red[체크 해제]**하고 설치를 마무리
+
+---
+
+### PostgreSQL 설치  
+
+#### 설치가 완료되면 아래와 같이 설치가 된 것을 확인 가능&lt;br&gt; Windows 사용자의 경우 시작 버튼에서 `PostgreSQL`이 설치된 것을 확인
+
+.pull-left[
+
+&lt;img src ="fig16.png", width = 100%&gt;
+
+]
+
+.pull-right[
+
+&lt;img src ="fig17.png", width = 100%&gt;
+
+]
+  
+#### 다음으로 **.red['pgAdmin4']** 파일을 실행하면 오른쪽 화면과 같이 나타나고, 참고로 접속시 비밀번호 입력하는 창이 나타나면&lt;br&gt;설치시 설정하였던 비밀번호를 입력
+
+---
+
+### 실습 데이터 테이블 구축하기 
+
+#### 실습 환경을 위해 실습용 데이터베이스를 구축&lt;br&gt;Databases에서 마우스 오른쪽 버튼을 눌러 'Create -&gt; Database'를 클릭
+
+.pull-left[
+
+&lt;img src ="fig18.png", width = 100%&gt;
+
+]
+
+.pull-right[
+
+&lt;img src ="fig19.png", width = 90%&gt;
+
+]
+  
+#### 오른쪽 화면과 같이 창이 뜨면, Database 이름을 지정. 본 실습에서는 'Retail'이라는 데이터베이스명을 생성
+
+---
+
+### 실습 데이터 테이블 구축하기 
+
+#### 다음으로 만들어진 데이터베이스 트리 구조에서 아래와 같이 'Schemas - Public'에 마우스 오른쪽 버튼 클릭하여, `Query Tool`을 선택
+
+.center[
+&lt;img src ="fig20.png", width = 80%&gt;
+]
+
+---
+
+### 실습 데이터 테이블 구축하기 
+
+#### `Query Tool`이 실행되면 .orange[불러오기 모양의 폴더]를 선택한 후 `create_tbl.sql` 파일을 로드&lt;br&gt;쿼리 편집창에서 .orange['Ctrl+A']로 전체를 선택한 후 .orange['F5'] 를 눌러 쿼리를 실행.
+
+.center[
+&lt;img src ="fig21.png", width = 80%&gt;
+]
+
+---
+
+### 실습 데이터 테이블 구축하기 
+
+#### 왼쪽 트리 구조에서 **'Tables'**를 열어보면 아래와 같이 네 개의 테이블이 생성된 것을 확인
+
+.center[
+&lt;img src ="fig22.png", width = 80%&gt;
+]
+
+#### 다음으로 각 테이블에 실습할 예제의 데이터 업로드 진행
+
+---
+
+### 실습 데이터 테이블 구축하기 
+
+#### 먼저 `city` 테이블 업로드 진행. `city` 테이블에 마우스 오른쪽 버튼을 클릭하여, .orange['Export/Import...'] 버튼 클릭
+
+.pull-left[
+
+&lt;img src ="fig23.png", width = 80%&gt;
+
+]
+
+.pull-right[
+
+&lt;img src ="fig24.png", width = 100%&gt;
+
+]
+
+#### 데이터 Import 후 새로운 쿼리 편집창을 띄운 다음과 같이 입력 후 쿼리 실행
+```sql
+select * from city;
+```
+
+---
+
+### 실습 데이터 테이블 구축하기 
+
+#### 나머지 3개의 테이블도 같은 과정으로 데이터를 업로드하여, 정상적으로 데이터가 업로드가 되었는 지 확인
+
+.pull-left[
+
+```sql
+select * from city;
+
+select * from customer;
+
+select * from prod_cat_info;
+
+select * from transactions;
+```
+
+]
+
+.pull-right[
+
+&lt;img src ="fig25.png", width = 100%&gt;
+
+]
+
+#### 실습을 위한 테이블 생성 및 데이터 업로드가 모두 완료&lt;br&gt;.orange[pgAmind4]의 쿼리 입력창에서 실습을 진행해도 되지만, 훨씬 편리한 인터페이스를 갖춘 .orange['DBeaver']를 설치하여 실습을 진행 
+---
+
+### DBeaver 설치
+
+#### DBeaver는 SQL 클라이언트이자 데이터베이스 관리도구로, PostgreSQL 처럼 무료로 사용할 수 있는 오픈소스 소프트웨어이다.&lt;br&gt;DBeaver는 PostgreSQL 뿐만 아니라 Oracle, MySQL, MariaDB, SQLserver, Redshift 등 다양한 DB를 지원한다.
+
+다음의 주소로 접속하여, 디비버 프로그램 다운로드&lt;br&gt;
+https://dbeaver.io/download/
+
+.center[
+&lt;img src ="fig26.png", width = 65%&gt;
+]
+
+각 사용자 환경에 맞춰 파일을 다운로드 후 설치 진행
+
+---
+
+### DBeaver 설치
+
+#### 설치가 완료되면 아래와 같이 데이터베이스를 선택하는 화면이 나오고, 실습을 위해 'PostgreSQL'을 선택&lt;br&gt;PostgreSQL을 설치하고 나면 아래와 같은 화면이 나오는데, Host는 데이터베이스가 PC에 설치가 되어 있기 때문에 .blue['localhost']입력&lt;br&gt;다음으로 'Database'명을 입력하는 곳이 있는데, 여기에는 이전에 생성하였던 데이터베이스 이름을 입력 .blue['Retail']&lt;br&gt;'Password' 입력하는 곳에는 .blue[설치시 설정했던 비밀번호를 입력]한 후 모든 입력이 완료가 되면 아래의 .blue['Test Connection'] 클릭
+
+.pull-left[
+&lt;img src ="fig27.png", width = 95%&gt;
+]
+
+.pull-right[
+&lt;img src ="fig28.png", width = 95%&gt;
+]
+
+정상적으로 연결이 완료가 되면 오른쪽 이미지와 같이 연결되었다는 메시지가 나오면, 확인 후 완료
+
+---
+
+### DBeaver 설치
+
+#### 디비버 좌측 트리 구조에서 'Retail' 데이터베이스를 클릭하면 각 네 개의 테이블이 있는 것을 확인&lt;br&gt;상단 SQL 편집기 탭에서 SQL 편집기를 클릭하면, SQL 구문을 입력할 수 있는 편집창이 나타나게 됨
+
+.pull-left[
+&lt;img src ="fig29.png", width = 95%&gt;
+]
+
+.pull-right[
+&lt;img src ="fig30.png", width = 95%&gt;
+]
+
+**'pgAdmin4'**의 쿼리 편집기에서 입력한 것과 같이 아래와 같이 쿼리문을 작성한 후 'ctrl+Enter'을 입력하면,&lt;br&gt; 정상적으로 데이터가 나오는 것을 확인
+```sql
+select * from transactions;
+```
+---
+class: inverse center middle
+
+# SQL 기초 - 기본 SQL 작동원리 이해
+```
+SELECT문의 기본 구조 이해
+```
+
+---
+
+## SELECT문의 기본 구조 이해
+
+###원하는 데이터를 추출하기 위해서는 .blue[업무적인 요구사항]을 먼저 정의해야 한다.
+* #### SQL을 작성한다는 것은 업무적인 요구사항을 SQL 문법(Syntax)을 이용하여 기술하는 것이다.
+* #### &lt;u&gt;업무적인 요구사항이 구체적이어야&lt;/u&gt; 정확한 SQL 문을 작성할 수 있고, 그에 따라 원하는 데이터 집합을 조회할 수 있다.
+
+### SELECT 문은 데이터베이스에 저장된 .orange[데이터를 조회]하는 구문이다.
+* #### 저장된 데이터를 &lt;u&gt;원래 값의 형태 그대로 조회하거나 가공하여 조회&lt;/u&gt;할 수 있다.&lt;br&gt;하지만, 테이블에 저장된 데이터 자체를 변경하지는 않는다.
+
+---
+
+### SELECT문의 기본 구조 이해
+
+#### SELECT 문의 논리적 처리 순서
+
+.pull-left[
+&lt;img src ="fig31.png", width = 100%&gt;
+]
+
+.pull-right[
+1. '거래' 내역에서
+1. 각 고객의 거래건수, 총 거래액, 최근 거래일자를 추출
+1. 단, 0원 초과 거래건(취소 거래건도 포함),&lt;br&gt;2회 이상 주문한 고객만 추출
+1. 데이터 결과는 총 거래액이 가장 큰 순서대로 나타내라.
+]
+
+* **SELECT** 컬럼, 계산값
+* **FROM** 테이블명
+* **WHERE** 조건(필터)
+* **GROUP BY** 그룹화(컬럼)
+* **HAVING** 그룹화 된 결과에서 사용되는 조건(필터)
+* **ORDER BY** 컬럼명(OR 컬럼별칭 OR 컬럼 위치)
+* **LIMIT** 제한된 행의 수만 반환 (단, Oracle에서는 없는 기능)
+
+### SELECT문은 데이터베이스의 데이터를 조회하는 구문이다.
+---
+
+### SELECT문 - 엑셀 데이터 비교
+
+.pull-left[
+&lt;img src ="fig32.png", width = 100%&gt;
+
+* SELECT문의 컬럼과 계산값은 엑셀의 각 열(column)과 대응&lt;br&gt;
+
+* WHERE절과 HAVING절 조건 충족되지 않은 데이터는 제외&lt;br&gt;
+
+* ORDER BY절은 데이터 정렬시 `SUM(TOTAL_AMT)` 기준&lt;br&gt;내림차순 정렬
+]
+
+.pull-right[
+&amp;emsp;&amp;emsp;&lt;img src ="fig33.png", width = 70%&gt;
+]
+
+---
+
+### SELECT문은 기본적으로 `SELECT`절과 `FROM`절로 구성
+
+.pull-left[
+```sql
+  SELECT    A.CUSTOMER_ID
+        ,   A.TRAN_DATE
+		,   A.RATE
+		,   A.QTY
+		,   A.TOTAL_AMT
+	FROM	TRANSACTIONS A;
+```
+]
+
+.pull-right[
+&lt;img src ="fig34.png", width = 90%&gt;
+]
+
+#### TABLE명 뒤에 'A' 는, 테이블을 구분할 수 있는 명칭(Allias)으로 쿼리 작성시엔 테이블마다 명칭을 지정하는 것이 좋다.&lt;br&gt;명칭은 각 테이블을 직관적으로 이해할 수 있는 명칭이나, 'A-B-C...' 등으로 자유롭게 지정
+
+.pull-left[
+```sql
+  SELECT    A.*
+	FROM	TRANSACTIONS A;
+```
+]
+
+.pull-right[
+&lt;img src ="fig35.png", width = 80%&gt;
+]
+
+
+#### SELECT절에 `*`을 입력하면, 해당 테이블의 모든 컬럼을 출력한다.
+
+---
+
+### 특정 컬럼 명은 변경해 조회하려면 'AS'를 이용한다.
+
+단, 특정 컬럼 명을 변경하여 조회하더라도 원 데이터의 컬럼명이 변경되는 것은 아니다.
+
+.pull-left[
+```sql
+SELECT	
+         A.CUSTOMER_ID	  AS 고객번호
+	,	A.TRAN_DATE		AS 거래일자
+	,	A.RATE			 AS 판매가
+	,	A.QTY			  AS 주문수량
+	,	A.TOTAL_AMT		AS 주문금액
+FROM	TRANSACTIONS A;   
+```
+]
+
+.pull-right[
+&lt;img src ="fig36.png", width = 100%&gt;
+]
+
+### 일반적으로 컬럼 별칭('Column Alias')은 집계된 컬럼, 함수 이용 구문,&lt;br&gt;동일 컬럼 사용시에 코드 가독성 측면에서 사용된다.
+
+---
+
+### `DISTINCT`를 이용하면 중복을 제외하고 데이터를 조회할 수 있다.
+
+.pull-left[
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&lt;img src ="fig37.png", width = "40%"&gt;&lt;br&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;전체 데이터 조회 결과
+]
+
+.pull-right[
+```sql
+SELECT  DISTINCT A.STORE_TYPE
+FROM    TRANSACSTIONS A;
+```
+&lt;br&gt;
+&lt;img src ="fig38.png", width = "50%"&gt;
+&lt;br&gt;
+`DISTINCT`를 사용하여 조회한 결과
+
+]
+
+---
+
+### `SELECT`절에서는 컬럼(Column)과 함께 `Literal`을 기술할 수 있다.
+* 리터럴에는 .blue['문자 리터럴', '숫자 리터럴', '날짜 리터럴']이 있다.
+* 문자 리터럴은 **Single Quotation(')**으로 감싸서 기술하고, 날짜 리터럴은 **DATE** 키워드와 함께 기술한다.
+
+#### [리터럴 사용 예시]
+
+```sql
+SELECT      B.CITY_CODE
+     ,      B.CITY_NAME
+     ,      'KOREA'                 AS CHAR_LITERAL
+     ,      DATE '2021-06-04'       AS DATE_LITERAL
+     ,      82                      AS NUM_LITERAL
+FROM        CITY B;
+```
+
+**[조회 결과]**
+.left[
+&lt;img src ="fig39.png", width = "45%"&gt;
+]
+
+---
+
+### `SELECT`절에서는 컬럼이나 리터럴에 대해 연산자를 사용할 수 있다.
+
+* 산술 연산자는 &lt;u&gt;숫자 값&lt;/u&gt;과 &lt;u&gt;날짜 값&lt;/u&gt;에 대해 사용할 수 있다.&lt;br&gt;
+
+    - &lt;u&gt;숫자 값&lt;/u&gt; 간에 산술 연산은 수학에서 **사칙연산(*, /, +, -)**과 동일하게 수행되며, 우선 순위를 지정하기 위해 괄호를 사용한다. 
+    
+    - &lt;u&gt;날짜 값과 숫자 값&lt;/u&gt; 간에는 **더하기(+), 빼기(-) 연산**만 가능하며, 숫자 값은 일수(day)로 처리된다.
+    - &lt;u&gt;날짜 값&lt;/u&gt;간에는 **빼기(-) 연산**만 가능하며, 결과 값으로 두 날짜 간의 일수(day)가 나온다.&lt;br&gt;
+
+* 연결 연산자는 &lt;u&gt;**문자 값**&lt;/u&gt;에 대해 사용할 수 있다.&lt;br&gt;
+
+    - 연결 연산자(||)는 여러 개의 문자 값들을 연결시켜 하나의 문자 값을 만들어낸다.
+    
+    - 문자 값이 아닌 피연산자는 문자 값으로 변환환 뒤에 연결시킨다.  
+
+.pull-left[
+
+```sql
+SELECT  A.CUSTOMER_ID
+     ,  A.TOTAL_AMT
+     ,  (A.TOTAL_AMT + 1000) / 2                AS NEW_TOTAL_AMT
+     ,  A.TRAN_DATE + 1                         AS TRAN_DATE_PLUS_1DAY
+     ,  TRAN_DATE - 1/24/60/60		          AS TRAN_DT_MINUS_1SEC
+     ,  A.TRAN_DATE - DATE '2019-02-01'         AS DIFF_DAYS
+FROM    TRANSACTIONS A;
+```    
+
+]
+
+.pull-right[
+
+&lt;img src ="fig40.png", width = "100%"&gt;
+
+]
+
+---
+
+### `SELECT`절에서는 컬럼이나 리터럴에 대해 연산자를 사용할 수 있다.
+
+* 산술 연산자는 &lt;u&gt;숫자 값&lt;/u&gt;과 &lt;u&gt;날짜 값&lt;/u&gt;에 대해 사용할 수 있다.&lt;br&gt;
+
+    - &lt;u&gt;숫자 값&lt;/u&gt; 간에 산술 연산은 수학에서 **사칙연산(*, /, +, -)**과 동일하게 수행되며, 우선 순위를 지정하기 위해 괄호를 사용한다. 
+    
+    - &lt;u&gt;날짜 값과 숫자 값&lt;/u&gt; 간에는 **더하기(+), 빼기(-) 연산**만 가능하며, 숫자 값은 일수(day)로 처리된다.
+    - &lt;u&gt;날짜 값&lt;/u&gt;간에는 **빼기(-) 연산**만 가능하며, 결과 값으로 두 날짜 간의 일수(day)가 나온다.&lt;br&gt;
+
+* 연결 연산자는 &lt;u&gt;**문자 값**&lt;/u&gt;에 대해 사용할 수 있다.&lt;br&gt;
+
+    - 연결 연산자(||)는 여러 개의 문자 값들을 연결시켜 하나의 문자 값을 만들어낸다.
+    
+    - 문자 값이 아닌 피연산자는 문자 값으로 변환환 뒤에 연결시킨다.  
+
+.pull-left[
+
+```sql
+SELECT  C.CUSTOMER_ID
+     ,  C.DOB
+     ,  C.GENDER
+     ,  C.CUSTOMER_ID||'고객의 생년월일은'||C.DOB||'이고,'||'성별은'||C.GENDER||'입니다' AS CUST_INFO
+FROM    CUSTOMER C;
+```    
+
+]
+
+.pull-right[
+
+&lt;img src ="fig41.png", width = "85%"&gt;
+
+]
+
+---
+
+### `NULL`
+
+* 널(NULL)은 **.red[값이 없거나 정해지지 않은 것]**을 의미하며, 0 또는 공백(' ')과는 다르다
+* NULL을 포함한 산술 연산의 결과는 항상 NULL이다
+
+.pull-left[
+
+**[NULL 조회 및 연산]**
+```sql
+SELECT  A.CUSTOMER_ID
+    ,   AMT_2019
+    ,   AMT_2020
+    ,   AMT_2019 + 500
+    ,   AMT_2020 * 10
+    ,   AMT_2019 - NULL
+    ,   AMT_2019 + AMT_2020
+FROM    CUST_TRAN A
+```
+]
+
+
+.pull-right[
+**[조회 결과]**
+&lt;img src ="fig42.png", width = "95%"&gt;
+
+]
+
+---
+
+### 주석 Comments
+
+* 주석은 SQL문의 결과에 영향을 미치지 않으며, 관련된 정보나 메모 등을 기술할 수 있다.
+
+    - 단일 행 주석 : -- 뒤에 주석 내용을 기술한다. (줄이 바뀌기 전까지 주석이 유지된다.)
+    
+    - 다중 행 주석 : **/\* 와 \*/** 사이에 주석 내용을 기술한다. (줄이 바뀌어도 주석이 유지된다.)
+
+.pull-left[
+**[단일 행 주석 사용]**
+```sql
+SELECT
+        A.CUSTOMER_ID   -- 고객번호
+     ,  A.DOB           -- 생년월일
+     ,  A.GENDER        -- 성별
+     ,  A.CITY_CODE     -- 거주지 코드
+        -- 거주지 코드는 city table과 JOIN
+FROM    CUSTOMER A;
+```
+]
+
+.pull-right[
+**[다중 행 주석 사용]**
+```sql
+SELECT
+        A.CUSTOMER_ID   
+     ,  A.DOB           
+     ,  A.GENDER        
+     ,  A.CITY_CODE     
+        /* 고객번호, 생년월일, 성별, 거주지코드
+        단, 거주지명은 city table과 JOIN하여,
+        확인 가능
+        */
+FROM    CUSTOMER A;
+```
+]
+
+---
+## WHERE절
+
+&gt; 만약 다음과 같은 데이터를 조회를 해야 한다면 어떻게 처리해야 할까?
+&gt;
+&gt; "30대 고객 데이터만 뽑아서 주로 어떤 카테고리에서 구매하는지 파악해주세요"
+
+### SELECT 문에 WHERE절을 사용하여 조회되는 데이터(행)을 제한할 수 있다.
+
+.pull-left[
+
+```sql
+SELECT  *
+FROM    테이블명
+WHERE   조건
+;
+```
+]
+
+.pull-right[
+
+]
+&lt;br&gt;
+
+#### * WHERE 절 조건의 종류는 `비교 조건`, `논리 조건`, `IN 조건`, `BETWEEN 조건`, `LIKE 조건`, `IS (NOT) NULL` 이 있다.
+
+---
+
+### WHERE절 - 비교 조건
+
+#### 비교 조건에는 .orange['같다(=)'], .orange['크다(&gt;)'], .orange['크거나 같다(&gt;=)'], .orange['같지 않다(&lt;&gt;)'], .orange['작다(&lt;)'], .orange['작거나 같다(&lt;=)']가 있다. 
+
+.pull-left[
+**[비교 조건 같다(=) 사용 예제]**
+
+```sql
+SELECT  A.CUSTOMER_ID
+    ,   A.TRAN_DATE
+    ,   A.TOTAL_AMT
+    ,   A.STORE_TYPE
+FROM    TRANSACTIONS A
+WHERE   STORE_TYPE = 'OnlineShop';
+```
+
+&lt;img src ="fig43.png", width = "75%"&gt;
+
+]
+
+.pull-right[
+
+**[비교 조건 크거나 같다(&gt;=) 사용 예제]**
+```sql
+SELECT  A.CUSTOMER_ID
+    ,   A.TRAN_DATE
+    ,   A.DISCOUNT
+    ,   A.TOTAL_AMT
+FROM    TRANSACTIONS A
+WHERE   A.DISCOUNT &gt;= 500;
+```
+
+&lt;img src ="fig44.png", width = "70%"&gt;
+
+]
+
+---
+
+### 논리 조건
+
+#### WHERE 절에 .orange['AND', 'OR'] 논리 조건을 사용하면 조건들을 결합하여 제한할 수 있다.
+
+&lt;table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (조건1) AND (조건2) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 조건1과 조건2가 모두 TRUE이면, AND 논리 조건 결과는 TRUE) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (조건1) OR (조건2) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 조건1과 조건2 중 하나라도 TRUE이면, OR 논리 조건 결과는 TRUE) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+.pull-left[
+**[논리 조건 `AND` 예제]**
+```sql
+SELECT  A.CUSTOMER_ID
+    ,   A.DOB
+    ,   A.GENDER
+    ,   A.CITY_CODE
+FROM    CUSTOMER A
+WHERE   A.GENDER = 'F'
+AND     A.DOB &gt;= TO_DATE('1990-01-01', 'YYYY-MM-DD')
+```
+
+&lt;img src ="fig45.png", width = "45%"&gt;
+
+]
+
+.pull-right[
+**[논리 조건 `OR` 예제]**
+```sql
+SELECT  A.CUSTOMER_ID
+    ,   A.DOB
+    ,   A.GENDER
+    ,   A.CITY_CODE
+FROM    CUSTOMER A
+WHERE   A.GENDER = 'F'
+OR      A.CITY_CODE = '5';
+```
+
+&lt;img src ="fig46.png", width = "45%"&gt;
+]
+
+---
+
+### AND, OR 논리 조건 간 우선 순위
+
+#### 괄호를 사용하면 괄호 안 논리 조건을 우선 순위로 하여 처리가 된다.
+
+```sql
+SELECT  A.CUSTOMER_ID
+    ,   A.DOB
+    ,   A.GENDER
+    ,   A.CITY_CODE
+FROM    CUSTOMER A
+WHERE   ( A.GENDER = 'F'
+OR      A.DOB &gt;= TO_DATE('1990-01-01', 'YYYY-MM-DD') )
+AND     A.CITY_CODE = '5'
+```
+.pull-left[
+&lt;img src ="fig47.png", width = "60%"&gt;
+]
+
+#### WHERE 절에서 AND와 OR 논리 조건이 함께 사용될 경우,&lt;br&gt;괄호를 사용하여 명시적으로 우선순위를 지정해주는 것이 좋다.
+
+---
+
+### IN 조건
+
+&gt; 만약 다음과 같은 데이터를 조회를 해야 한다면 어떻게 처리해야 할까?
+&gt;
+&gt; "서울과 인천 지역에 거주하는 고객의 정보만 확인해주세요"
+
+&lt;table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 지역 IN (서울, 인천) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 지역 IN List(서울, 인천) 중 어떤 값과 같다 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 지역 NOT IN (서울, 인천) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 지역 IN List(서울, 인천)의 모든 값과 같지 않다. &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+.pull-left[
+**[IN 조건 사용 예제]**
+```sql
+SELECT  A.*
+FROM    CITY A
+WHERE   A.CITY_CODE IN ('5', '10');
+```
+
+[결과]&lt;br&gt;
+&lt;img src ="fig48.png", width = "60%"&gt;
+
+]
+
+.pull-right[
+**[NOT IN 조건 사용 예제]**
+```sql
+SELECT  A.*
+FROM    CITY A
+WHERE   A.CITY_CODE NOT IN ('5', '10');
+```
+[결과]&lt;br&gt;
+&lt;img src ="fig49.png", width = "50%"&gt;
+
+]
+
+---
+
+### BETWEEN 조건
+
+&gt; 만약 다음과 같은 데이터를 조회를 해야 한다면 어떻게 처리해야 할까?
+&gt;
+&gt; "2019년 1월부터 3월까지 거래내역을 확인하고 싶어요"
+
+&lt;table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 거래일자 BETWEEN 2019-01-01 AND 2019-03-31 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 거래일자가 2019년 1월 1일부터 2019년 3월 31일 사이에 있다 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 거래일자 NOT BETWEEN 2019-01-01 AND 2019-03-31 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 거래일자가 2019년 1월 1일부터 3월 31일 사이에 있지 않다 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+.pull-left[
+**[BETWEEN 조건 사용 예제]**
+```sql
+SELECT  A.*
+FROM    TRANSACTIONS A
+WHERE   A.TRAN_DATE BETWEEN TO_DATE('2019-01-01', 'YYYY-MM-DD') AND TO_DATE('2019-03-31', 'YYYY-MM-DD');
+```
+
+[결과]&lt;br&gt;
+&lt;img src ="fig50.png", width = "80%"&gt;
+
+]
+
+.pull-right[
+**[NOT BETWEEN 조건 사용 예제]**
+```sql
+SELECT  A.*
+FROM    TRANSACTIONS A
+WHERE   A.TRAN_DATE NOT BETWEEN TO_DATE('2019-01-01', 'YYYY-MM-DD') AND TO_DATE('2019-03-31', 'YYYY-MM-DD');
+```
+[결과]&lt;br&gt;
+&lt;img src ="fig51.png", width = "80%"&gt;
+
+]
+
+---
+
+### LIKE 조건
+
+&gt; 만약 다음과 같은 데이터를 조회를 해야 한다면 어떻게 처리해야 할까?
+&gt;
+&gt; "여성(Women) 관련 카테고리 정보를 모두 확인하고 싶어요"
+
+&lt;table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 컬럼명 LIKE '문자열 패턴' &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 컬럼명이 문자열 패턴과 일치한다 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 컬럼명 NOT LIKE '문자열 패턴' &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 컬럼명이 문자열 패턴과 일치하지 않는다. &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+#### LIKE 조건의 비교 값은 양쪽 모두 문자 값이어야 한다.
+#### LIKE 조건의 (문자열 패턴)에서 특수 문자 `%`와 `_`는 아래와 같은 의미를 갖는다.
+
+&lt;table class=" lightable-paper lightable-hover" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; '%' &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0개 이상의 모든 문자와 일치 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; '_' &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1개의 모든 문자와 일치 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### LIKE 조건
+
+.pull-left[
+**[LIKE 조건 '%' 패턴 매칭 예제1]**
+```sql
+SELECT  A.*
+FROM    PROD_CAT_INFO A
+WHERE   A.PROD_SUB_CAT LIKE 'Fic%';
+```
+
+[결과]&lt;br&gt;
+&lt;img src ="fig52.png", width = "90%"&gt;
+
+]
+
+.pull-right[
+**[LIKE 조건 '%' 패턴 매칭 예제2]**
+```sql
+SELECT  A.*
+FROM    PROD_CAT_INFO A
+WHERE   A.PROD_SUB_CAT LIKE '%Fic%';
+```
+[결과]&lt;br&gt;
+&lt;img src ="fig53.png", width = "90%"&gt;
+
+]
+
+---
+
+### LIKE 조건
+
+.pull-left[
+**[LIKE 조건 '_' 패턴 매칭 예제1]**
+```sql
+SELECT  A.*
+FROM    PROD_CAT_INFO A
+WHERE   A.PROD_SUB_CAT LIKE '_o___';
+```
+
+[결과]&lt;br&gt;
+&lt;img src ="fig54.png", width = "90%"&gt;
+
+]
+
+.pull-right[
+**[LIKE 조건 '_' 패턴 매칭 예제2]**
+```sql
+SELECT  A.*
+FROM    PROD_CAT_INFO A
+WHERE   A.PROD_SUB_CAT LIKE '____';
+```
+[결과]&lt;br&gt;
+&lt;img src ="fig55.png", width = "90%"&gt;
+
+]
+
+---
+
+### LIKE 조건
+
+.pull-left[
+**[NOT LIKE 조건 '%' 패턴 매칭 예제1]**
+```sql
+SELECT  A.*
+FROM    PROD_CAT_INFO A
+WHERE   A.PROD_SUB_CAT NOT LIKE '%o%';
+```
+
+[결과]&lt;br&gt;
+&lt;img src ="fig56.png", width = "90%"&gt;
+
+]
+
+.pull-right[
+**[NOT LIKE 조건 '_' 패턴 매칭 예제2]**
+```sql
+SELECT  A.*
+FROM    PROD_CAT_INFO A
+WHERE   A.PROD_SUB_CAT NOT LIKE '_____';
+```
+[결과]&lt;br&gt;
+&lt;img src ="fig57.png", width = "90%"&gt;
+
+]
+
+---
+
+### IS NULL 조건
+
+.pull-left[
+**[IS NULL 조건 사용 예제1]**
+```sql
+SELECT  A.CUSTOMER_ID
+    ,   A.AMT_2019
+    ,   A.AMT_2020
+FROM    CUST_TRAN A
+WHERE   A.AMT_2020 IS NULL;
+```
+
+[결과]&lt;br&gt;
+&lt;img src ="fig58.png", width = "70%"&gt;
+
+]
+
+.pull-right[
+**[IS NOT NULL 조건 사용 예제1]**
+```sql
+SELECT  A.CUSTOMER_ID
+    ,   A.AMT_2019
+    ,   A.AMT_2020
+FROM    CUST_TRAN A
+WHERE   A.AMT_2020 IS NOT NULL;
+```
+
+[결과]&lt;br&gt;
+&lt;img src ="fig59.png", width = "70%"&gt;
+
+]
+
+---
+
+### ORDER BY절
+
+#### 컬럼 뒤에 ASC/DESC 키워드를 사용하여 데이터를 오름차순/내림차순으로 정렬을 할 수 있다.
+
+.pull-left[
+**[오름차순 정렬 : ASC 지정 (기본 값이므로 생략 가능)]**
+```sql
+SELECT  A.CUSTOMER_ID
+    ,   A.DOB
+    ,   A.GENDER
+FROM    CUSTOMER A
+WHERE   A.GENDER = 'M'
+ORDER BY A.DOB ASC;
+```
+
+[결과]&lt;br&gt;
+&lt;img src ="fig60.png", width = "40%"&gt;
+
+]
+
+.pull-right[
+**[내림차순 정렬 : DESC 지정]**
+```sql
+SELECT  A.CUSTOMER_ID
+    ,   A.DOB
+    ,   A.GENDER
+FROM    CUSTOMER A
+WHERE   A.GENDER = 'M'
+ORDER BY A.DOB DESC;
+```
+
+[결과]&lt;br&gt;
+&lt;img src ="fig61.png", width = "40%"&gt;
+
+]
+
+---
+
+### ORDER BY절
+
+#### * SELECT절의 컬럼 별칭이나 컬럼 위치를 이용하여 정렬 순서를 지정할 수도 있다.
+
+.pull-left[
+**[컬럼 별칭(Column Alias) 이용 예시]**
+```sql
+SELECT  A.CUSTOMER_ID
+    ,   A.DOB           AS BIRTHDAY
+    ,   A.GENDER
+FROM    CUSTOMER A
+WHERE   A.GENDER = 'M'
+ORDER BY BIRTHDAY DESC;
+```
+
+[결과]&lt;br&gt;
+&lt;img src ="fig62.png", width = "50%"&gt;
+
+]
+
+.pull-right[
+**[컬럼 위치(Column Position) 이용 예시]**
+```sql
+SELECT   A.CUSTOMER_ID
+    ,    A.DOB
+    ,    A.GENDER
+FROM     CUSTOMER A
+WHERE    A.GENDER = 'M'
+ORDER BY 2 DESC;
+```
+
+[결과]&lt;br&gt;
+&lt;img src ="fig61.png", width = "50%"&gt;
+
+]
+
+---
+
+### ORDER BY절
+
+#### ORDER BY절에 기술된 컬럼/표현식의 데이터 타입에 따라 정렬 순서가 달라질 수 있다.&lt;br&gt;*데이터 타입 (문자형, 숫자형, 날짜형 등)
+
+.pull-left[
+**[숫자 타입 정렬 예제]**
+```sql
+SELECT  A.CUSTOMER_ID
+    ,   A.TRAN_DATE
+    ,   A.TOTAL_AMT
+FROM    TRANSACTIONS A
+ORDER BY A.TOTAL_AMT DESC;
+```
+
+[결과]&lt;br&gt;
+&lt;img src ="fig63.png", width = "50%"&gt;
+
+]
+
+.pull-right[
+**[문자 타입 정렬 예제]**
+```sql
+SELECT  A.CUSTOMER_ID
+    ,   A.TRAN_DATE
+    ,   TEXT(A.TOTAL_AMT)
+FROM    TRANSACTIONS A
+ORDER BY TEXT(A.TOTAL_AMT) DESC;
+```
+
+[결과]&lt;br&gt;
+&lt;img src ="fig64.png", width = "50%"&gt;
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2022.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+    td.td1 {width: 36.2px; margin: 0.5px 0.5px 0.5px 0.5px; padding: 1.0px 1.0px 1.0px 1.0px}
+    td.td2 {width: 222.4px; margin: 0.5px 0.5px 0.5px 0.5px; padding: 1.0px 1.0px 1.0px 1.0px}
+  </style>
+</head>
+<body>
+<table cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p1"><span class="s1">&lt;style&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">.logo {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">background-image: url(newschool_logo.png);</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">background-size: contain;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">background-repeat: no-repeat;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">position: absolute;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">top: 0em;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">right: 1em;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">width: 139px;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">height: 135px;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">z-index: 0;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">&lt;/style&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">&lt;script&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">document</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">.querySelectorAll(</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">'.remark-slide-content' +</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">':not(.title-slide)' +</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">// add additional classes to exclude here, e.g.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">// ':not(.inverse)' +</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">':not(.hide-logo)'</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">.forEach(el =&gt; {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">el.innerHTML += '&lt;div class="logo"&gt;&lt;/div&gt;';</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">});</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">&lt;/script&gt;</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
