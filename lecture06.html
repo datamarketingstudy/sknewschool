@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>데이터 분석하기 02</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="이건승" />
+    <meta name="date" content="2021-06-09" />
+    <script src="lecture06_files/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="pull_size.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# 데이터 분석하기 02
+## SK NEW SCHOOL - MD학과
+### 이건승
+### 2021-06-09
+
+---
+
+
+
+
+
+
+### 패키지
+
+.pull-left[
+
+#### 정의
+ -응용 프로그램, 확장 프로그램, library  
+ -패키지는 데이터나 함수를 제공하는 프로그램
+ 
+#### R의 Package
+ -R을 처음에 설치하면 base라는 package가 설치되어 있습니다.  
+ -base외의 확장 기능을 제공하는 패키지를 설치하여 사용합니다.  
+ 
+#### Package의 위상
+ -R과 Python은 오픈 소스 기반 언어  
+ -누구나 패키지를 만들고 공유할 수 있습니다.  
+ -많은 사람들이 패키지를 만들면서 발전과 생태계가 확장됩니다.
+
+]
+
+.pull-right[
+#### 설치
+ -base외의 패키지를 사용하려면 설치를 먼저 해주어야 합니다.  
+ -마치 앱스토어, 플레이스토어에서 앱을 다운 받아 설치하는 것과 같습니다.  
+ -따옴표를 넣어서 패키지의 이름을 입력합니다.  
+ 
+&amp;emsp;&lt;img src ="fig160.png", width = 55%&gt;
+
+#### 사용 선언
+ -코드에서 패키지를 사용하기 전에 패키지 사용을 선언해주어야 함  
+ -따옴표 없이 아래처럼 입력
+
+&amp;emsp;&lt;img src ="fig161.png", width = 50%&gt;
+
+]
+
+---
+
+### File Types
+
+.pull-left[
+
+#### Source 파일
+ -서식(폰트의 종류와 크기)이 없기에 메모장에서도 편집/저장 가능  
+ -.R : R 문법을 따르는 명령어로 구성  
+ -.Rmd : 3가지 부분으로 구성되어 문서 생성
+  - `Yaml` : 문서의 포맷 결정
+  - `Markdown` : 워드프로세서처럼 자유롭게 작성
+  - `R chunks` : R 명령어
+  
+]
+
+.pull-right[
+
+#### Data 파일
+ -일반 데이터 파일
+  - .csv : Comma Seperated Values  
+  - .txt : 다양한 분리자로 구분된 파일  
+  - .xls, .xlsx  
+  
+-R 데이터 파일
+ - R에서 작업중인 데이터를 저장하고 불러오는 파일
+ - .Rdata
+  - 현재 메모리 상태를 저장하고 나중에 복원할 수 있음
+  - 작업을 이어서 하는데에 유용
+ - .Rda
+  - 1개 함수나 변수를 저장하는 파일 
+
+]
+
+---
+
+### 데이터 파일 입출력
+
+####.csv  
+
+ -첫 번째 행이 제목인 경우, 첫 번째 행이 **dataset**의 column name이 됨  
+ -`header=TRUE`가 default input (입력하지 않아도 자동으로 `header=TRUE`가 됨)  
+ -`stringAsFactors = FALSE`를 넣지 않으면 `data.frame`의 모든 string 변수가 factor형으로 저장됨  
+ 
+&lt;img src ="fig162.png", width = 80%&gt;
+
+ -첫 번째 행이 컬럼명이 아니라면 `header = FALSE` 입력
+ 
+&lt;img src ="fig163.png", width = 80%&gt;
+
+ -**dataset**을 `file_name.csv`로 저장하려면?
+ 
+&lt;img src ="fig164.png", width = 40%&gt;
+
+---
+
+### 데이터 파일 입출력
+
+####.txt
+
+ -csv 파일은 구분자가 comma이기에 별도의 입력이 필요하지 않았지만  
+ -txt 파일에서는 구분자(seperator, sep)를 입력해주어야 함.  
+ -ex) `sep="\t" (Tab), sep="." (Period), sep="\n" (Linebreak)
+
+&lt;img src ="fig165.png", width = 70%&gt;
+
+
+####.xls, xlsx
+
+ -패키지 등을 이용하여 불러오기, 저장 가능 (`readxl`, `xlsx`)  
+ - `readxl` 패키지 기준 `col_names=FALSE`는 `header=FALSE`에 대응  
+ - `stringAsFactors = FALSE`를 하지 않아도 string으로 저장  
+ - `xlsx` 패키지 기준 불러올 sheet 순서 지정 가능  
+
+&lt;img src ="fig166.png", width = 35%&gt;
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2022.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+    td.td1 {width: 36.2px; margin: 0.5px 0.5px 0.5px 0.5px; padding: 1.0px 1.0px 1.0px 1.0px}
+    td.td2 {width: 222.4px; margin: 0.5px 0.5px 0.5px 0.5px; padding: 1.0px 1.0px 1.0px 1.0px}
+  </style>
+</head>
+<body>
+<table cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p1"><span class="s1">&lt;style&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">.logo {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">background-image: url(newschool_logo.png);</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">background-size: contain;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">background-repeat: no-repeat;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">position: absolute;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">top: 0em;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">right: 1em;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">width: 139px;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">height: 135px;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">z-index: 0;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">}</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">&lt;/style&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">&lt;script&gt;</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">document</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">.querySelectorAll(</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">'.remark-slide-content' +</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">':not(.title-slide)' +</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">// add additional classes to exclude here, e.g.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">// ':not(.inverse)' +</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">':not(.hide-logo)'</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">.forEach(el =&gt; {</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">el.innerHTML += '&lt;div class="logo"&gt;&lt;/div&gt;';</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">});</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="middle" class="td1">
+        <p class="p2"><span class="s1"></span><br></p>
+      </td>
+      <td valign="middle" class="td2">
+        <p class="p1"><span class="s1">&lt;/script&gt;</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
