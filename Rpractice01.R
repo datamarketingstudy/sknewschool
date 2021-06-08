@@ -24,6 +24,9 @@ write.table(dataset, "fileName.txt")
 library(readxl)
 dataset <- read_excel("file_name.xlsx", col_names = FALSE)
 # xlsx
-library(rJava)
-dataset <- read.xlsx
+library(xlsx)
+dataset <- read.xlsx("file_name.xlsx", 1) # 1 대신 "Sheet Name" 가능
+write.xlsx(dataset, "file_name.xlsx") # sheet 지정도 가능
+
+
 
