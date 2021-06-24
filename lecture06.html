@@ -4,7 +4,7 @@
     <title>데이터 분석하기 02</title>
     <meta charset="utf-8" />
     <meta name="author" content="이건승" />
-    <meta name="date" content="2021-06-09" />
+    <meta name="date" content="2021-06-16" />
     <script src="lecture06_files/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="pull_size.css" type="text/css" />
@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # 데이터 분석하기 02
 ## SK NEW SCHOOL - MD학과
 ### 이건승
-### 2021-06-09
+### 2021-06-16
 
 ---
 
@@ -136,6 +136,33 @@ class: center, middle, inverse, title-slide
 
 &lt;img src ="fig166.png", width = 35%&gt;
 
+---
+
+### 경로(path &amp; directory)
+
+#### Working directory
+
+-R엔진이 인식하고 있는 현재 폴더
+ - `getwd()`를 실행하면 확인 가능
+ - `setwd("directory_you_want")`를 사용해서 변경 가능
+
+-R Studio 실행 방식에 따라서 working directory가 달라짐
+ - Rstudio 아이콘을 더블클릭해서 실행 -&gt; 디폴트 설정값
+ - `.R`이나 `.Rmd` 파일을 클릭해서 실행 -&gt; 해당 소스파일이 위치한 폴더
+ 
+
+```r
+getwd()
+```
+
+```
+## [1] "/Users/geonseunglee/Desktop/R/workingdirectory/sknewschool"
+```
+ 
+
+---
+
+# ddd
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

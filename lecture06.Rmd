@@ -162,3 +162,25 @@ style_mono_light(
 
 <img src ="fig166.png", width = 35%>
 
+---
+
+### 경로(path & directory)
+
+#### Working directory
+
+-R엔진이 인식하고 있는 현재 폴더
+ - `getwd()`를 실행하면 확인 가능
+ - `setwd("directory_you_want")`를 사용해서 변경 가능
+
+-R Studio 실행 방식에 따라서 working directory가 달라짐
+ - Rstudio 아이콘을 더블클릭해서 실행 -> 디폴트 설정값
+ - `.R`이나 `.Rmd` 파일을 클릭해서 실행 -> 해당 소스파일이 위치한 폴더
+ 
+```{r}
+getwd()
+```
+ 
+
+---
+
+# ddd

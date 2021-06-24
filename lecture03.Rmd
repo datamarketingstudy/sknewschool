@@ -94,9 +94,9 @@ FROM    PROD_CAT_INFO A;
 
 ### 데이터 분석에서 많이 쓰이는 문자 함수
 
-**SUBSTR(char)** : char의 모든 문자를 소문자로 변경하여 반환
+**SUBSTRING(char)** : 문자의 특정 위치를 추출
 
-**REPLACE(char)** : char의 모든 문자를 대문자로 변경하여 반환
+**REPLACE(char)** : 문자의 특정 패턴을 변환
 
 
 ```sql
