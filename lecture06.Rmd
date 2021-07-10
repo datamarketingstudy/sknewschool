@@ -282,3 +282,27 @@ class: inverse center middle
 <img src ="fig169.png", width = 100%> 
 
 ]
+
+---
+
+### 3. select(변수 추출, Column 선택)
+
+<img src ="fig170.png", width = 100%>
+
+---
+
+### 4. arrange(정렬)
+
+.pull-left[
+
+#### Ascending ( 1 - 2 - 3)
+<img src ="fig171.png", width = 100%>
+
+]
+
+.pull-right[
+
+#### Descending ( 3 - 2 - 1)
+<img src ="fig172.png", width = 100%>
+
+]

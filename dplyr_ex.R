@@ -40,3 +40,42 @@ head(temp)
 temp <- Trans[((Trans$Rate > 0) & (Trans$Rate < 5000)),] # base
 head(temp)
 
+# select
+
+temp <- select(Trans, customer_id, tran_date, total_amt) # dplyr
+head(temp)
+
+temp <- Trans %>% select(customer_id, tran_date, total_amt) # dplyr, pipe
+head(temp)
+
+temp <- Trans[,c("customer_id", "tran_date", "total_amt")] # base
+head(temp)
+
+
+# arrange
+
+## Ascending ( 1 - 2 - 3)
+
+temp <- arrange(Customer, DOB) # dplyr
+head(temp)
+
+temp <- Customer %>% arrange(DOB) # dplyr, pipe
+head(temp)
+
+temp <- Customer[order(Customer$DOB),] # base
+head(temp)
+
+# arrange
+
+## Descending ( 3 - 2 - 1)
+
+temp <- arrange(Customer, desc(DOB))  # dplyr
+head(temp)
+
+temp <- Customer %>% arrange(desc(DOB)) # dplyr, pipe
+head(temp)
+
+temp <- Customer[order(Customer$DOB, decreasing = TRUE),]  # base
+head(temp)
+
+
