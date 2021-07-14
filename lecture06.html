@@ -4,7 +4,7 @@
     <title>데이터 분석하기 02</title>
     <meta charset="utf-8" />
     <meta name="author" content="이건승" />
-    <meta name="date" content="2021-07-10" />
+    <meta name="date" content="2021-07-12" />
     <script src="lecture06_files/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="pull_size.css" type="text/css" />
@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # 데이터 분석하기 02
 ## SK NEW SCHOOL - MD학과
 ### 이건승
-### 2021-07-10
+### 2021-07-12
 
 ---
 
@@ -228,6 +228,16 @@ class: inverse center middle
   
 - **group_by + summarise**
   - Categorical 변수를 이용해 집계
+  
+- **inner_join, left_join, full_join**
+  - inner_join : 매칭된 두 관측값을 포함
+  - left_join : left에 위치한 모든 관측값을 보존한다
+  - full_join : 양 쪽의 모든 관측값을 보존한다
+  
+- **semi_join, anti_join**
+  - semi_join(x, y)는 y와 매치되는 x의 모든 관측값을 보존
+  - anti_join(x, y)는 y와 매치되는 x의 모든 관측값을 삭제
+  
 
 ]
 
@@ -278,6 +288,69 @@ class: inverse center middle
 
 #### Descending ( 3 - 2 - 1)
 &lt;img src ="fig172.png", width = 100%&gt;
+
+]
+
+---
+
+### 5. mutate(새로운 변수 만들기)
+
+.pull-left[
+
+#### add to columns
+&lt;img src ="fig173.png", width = 100%&gt;
+
+]
+
+.pull-right[
+
+#### mutate with ifelse
+
+&lt;img src ="fig174.png", width = 100%&gt;
+
+]
+
+---
+
+### 6. group_by + summarise
+
+### 'Store type' 별로 'total_amt' 차이가 있을까요?
+
+.pull-left[
+
+#### Step 1. 'Store_type'별로 묶어서 (group_by)
+
+#### Step 2. sum(total_amt)를 집계 (summarise)
+
+#### Step 3. 새로운 데이터셋 'store_summary'이 만들어 짐
+
+]
+
+.pull-right[
+
+&lt;img src ="fig175.png", width = 100%&gt;
+
+]
+
+---
+
+### 7. inner_join, left_join, full_join
+
+.pull-left[
+
+#### dataset
+
+
+```r1
+a &lt;- data.frame(fruit = c('apple', 'banana', 'kiwi'),
+                sweet = c(4, 3, 6))
+
+b &lt;- data.frame(fruit = c('peer', 'banana', 'strawberry'),
+                sweet = c(3, 3, 7))
+a
+b
+```
+
 
 ]
     </textarea>

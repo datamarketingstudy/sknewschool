@@ -4,7 +4,7 @@
     <title>데이터 추출하기 03</title>
     <meta charset="utf-8" />
     <meta name="author" content="이건승" />
-    <meta name="date" content="2021-07-08" />
+    <meta name="date" content="2021-07-15" />
     <script src="lecture04_files/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="pull_size.css" type="text/css" />
@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # 데이터 추출하기 03
 ## SK NEW SCHOOL - MD학과
 ### 이건승
-### 2021-07-08
+### 2021-07-15
 
 ---
 
@@ -292,6 +292,44 @@ FROM   ( SELECT A.PROD_CAT_CODE
 ```
 
 ]
+
+---
+
+class: inverse center middle
+
+# SQL 분석 실습
+
+---
+
+### 실제로 데이터 분석 업무를 한다고 가정하겠습니다.
+
+--
+
+#### 1. 카테고리(대-소)별 구매 고객수, 구매건수, 매출액, 평균 구매수량, 1인당 구매건수 및 구매일수, 객단가, 상품 전환율을 파악해보겠습니다.
+
+--
+
+#### 2. 각 카테고리(대-소)별 어떤 연령, 성별에서 구매가 많았는지 파악해보겠습니다.
+
+--
+
+#### 3. 지역별로 구매율은 어떤가요?
+
+--
+
+#### 4. 각 채널별로는 어떤 고객 층이 주로 구매를 하는 지 파악해볼까요?
+
+--
+
+#### 5. 카테고리별로 특정 채널에서 판매가 많이 이루어지나요?
+
+--
+
+#### 6. 각 카테고리의 재구매 현황은 어떤가요?
+
+--
+
+#### 7. 매월 우리 서비스에서는 생일인 고객 전체에게 쿠폰을 발급한다고 가정하겠습니다. 월별로 쿠폰 발급 수와 실제 구매 수를 가지고&lt;br&gt; 구매 반응률을 살펴보겠습니다.
 
 ---
 

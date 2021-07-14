@@ -79,3 +79,62 @@ temp <- Customer[order(Customer$DOB, decreasing = TRUE),]  # base
 head(temp)
 
 
+# mutate
+
+## dplyr
+temp <- mutate(Trans,
+               total_amt2 = Rate*Qty,
+               total_amt3 = (Rate*Qty)-(Discount*Qty)
+               )
+
+## dplyr + pipe
+temp <- Trans %>%
+    mutate(total_amt2 = Rate*Qty,
+           total_amt3 = (Rate*Qty) - (Discount*Qty))
+
+## base
+temp$total_amt2 <- temp$Rate*temp$Qty
+temp$total_amt3 <- (temp$Rate * temp$Qty) - (temp$Discount * temp$Qty)
+
+# mutate
+
+### mutate with ifelse
+
+## dplyr
+temp <- mutate(Trans,
+               Cancel_yn = ifelse(total_amt > 0, "N", "Y"),
+               Disc_yn = ifelse(is.na(Discount), "N", "Y"))
+
+## dplyr + pipe
+temp <- Trans %>%
+    mutate(Cancel_yn = ifelse(total_amt > 0, "N", "Y"),
+           Disc_yn = ifelse(is.na(Discount), "N", "Y"))
+
+## base
+temp$Cancel_yn <- ifelse(Trans$total_amt > 0, "N", "Y")
+temp$Disc_yn <- ifelse(is.na(Trans$Discount), "N", "Y")
+
+
+# group_by + summarise
+
+store_summary <- Trans %>%
+    group_by(Store_type) %>% # Step 1
+    summarise(sum_amt = sum(total_amt)) # Step 2
+store_summary # Step 3
+
+
+
+a <- data.frame(fruit = c('apple', 'banana', 'kiwi'),
+                sweet = c(4, 3, 6))
+
+b <- data.frame(fruit = c('peer', 'banana', 'strawberry'),
+                sweet = c(3, 3, 7))
+
+
+
+inner_join(a, b, by = c("fruit"))
+left_join(a, b, by = c("fruit" = "fruit"))
+full_join(a, b, by = c("fruit"))          
+
+semi_join(a, b, by = c("fruit" = "fruit"))
+anti_join(a, b, by = c("fruit"))
