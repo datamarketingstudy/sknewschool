@@ -130,6 +130,8 @@ a <- data.frame(fruit = c('apple', 'banana', 'kiwi'),
 b <- data.frame(fruit = c('peer', 'banana', 'strawberry'),
                 sweet = c(3, 3, 7))
 
+a
+b
 
 
 inner_join(a, b, by = c("fruit"))

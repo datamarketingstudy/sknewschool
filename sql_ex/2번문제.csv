@@ -1,0 +1,193 @@
+prod_cat,prod_sub_cat,age_grp,gender,cnt_cust,sum_amt
+Bags,Mens,40,F,185,24118340
+Bags,Mens,30,M,181,21845320
+Bags,Mens,40,M,196,19667700
+Bags,Mens,30,F,169,17461320
+Bags,Mens,50,F,27,3063300
+Bags,Mens,50,M,32,2907170
+Bags,Mens,20under,F,25,2691010
+Bags,Mens,20under,M,29,2563370
+Bags,Women,30,F,175,20718260
+Bags,Women,40,M,186,20225200
+Bags,Women,40,F,178,19324240
+Bags,Women,30,M,176,18803080
+Bags,Women,50,F,27,2760970
+Bags,Women,20under,M,26,2575800
+Bags,Women,20under,F,30,2553810
+Bags,Women,50,M,16,2211290
+Books,Academic,30,F,185,21192140
+Books,Academic,40,F,176,20434880
+Books,Academic,30,M,168,18805890
+Books,Academic,40,M,159,18080400
+Books,Academic,50,F,32,3673370
+Books,Academic,20under,M,27,3275510
+Books,Academic,50,M,29,3173820
+Books,Academic,20under,F,23,2738000
+Books,Children,40,M,202,24715770
+Books,Children,30,M,206,20455640
+Books,Children,40,F,174,20061100
+Books,Children,30,F,159,18689660
+Books,Children,20under,F,39,4264650
+Books,Children,50,F,33,3671810
+Books,Children,50,M,26,3258390
+Books,Children,20under,M,21,2703730
+Books,Children,50,,1,142560
+Books,Comics,40,M,217,23295140
+Books,Comics,30,M,193,21872890
+Books,Comics,40,F,176,19415590
+Books,Comics,30,F,167,17564030
+Books,Comics,50,M,29,3350710
+Books,Comics,50,F,26,3105630
+Books,Comics,20under,M,28,2772350
+Books,Comics,20under,F,27,2192870
+Books,DIY,40,M,192,22320070
+Books,DIY,40,F,191,20927110
+Books,DIY,30,M,185,18753290
+Books,DIY,30,F,163,18732730
+Books,DIY,50,M,24,3439700
+Books,DIY,20under,M,28,3202830
+Books,DIY,50,F,31,3201400
+Books,DIY,20under,F,23,2003500
+Books,DIY,50,,1,12200
+Books,Fiction,30,M,206,24625100
+Books,Fiction,40,M,195,23572820
+Books,Fiction,40,F,173,19612890
+Books,Fiction,30,F,183,18856590
+Books,Fiction,20under,F,31,3396900
+Books,Fiction,20under,M,26,3092320
+Books,Fiction,50,M,29,2940650
+Books,Fiction,50,F,23,2393530
+Books,Fiction,50,,1,199320
+Books,Non-Fiction,40,M,185,21922670
+Books,Non-Fiction,40,F,181,21165080
+Books,Non-Fiction,30,M,190,20401440
+Books,Non-Fiction,30,F,172,18241710
+Books,Non-Fiction,20under,F,31,4423720
+Books,Non-Fiction,50,F,25,3808930
+Books,Non-Fiction,20under,M,26,2898130
+Books,Non-Fiction,50,M,21,1592630
+Books,Non-Fiction,50,,1,163920
+Clothing,Kids,30,F,179,22161670
+Clothing,Kids,30,M,181,19537120
+Clothing,Kids,40,M,170,19466450
+Clothing,Kids,40,F,165,19166660
+Clothing,Kids,20under,F,40,4615500
+Clothing,Kids,50,F,35,4093660
+Clothing,Kids,20under,M,26,2453230
+Clothing,Kids,50,M,27,2429880
+Clothing,Kids,50,,1,13900
+Clothing,Mens,30,M,190,22356710
+Clothing,Mens,40,M,197,21750350
+Clothing,Mens,30,F,172,21011660
+Clothing,Mens,40,F,162,17216080
+Clothing,Mens,20under,F,23,3138020
+Clothing,Mens,50,M,21,2181320
+Clothing,Mens,50,F,17,1941840
+Clothing,Mens,20under,M,18,1497420
+Clothing,Women,30,M,201,23446300
+Clothing,Women,40,M,195,22322650
+Clothing,Women,30,F,179,19743860
+Clothing,Women,40,F,158,15839540
+Clothing,Women,50,F,32,3843740
+Clothing,Women,20under,M,32,3841250
+Clothing,Women,20under,F,15,1905520
+Clothing,Women,50,M,25,1814090
+Clothing,Women,50,,1,0
+Electronics,Audio and video,40,M,179,23717520
+Electronics,Audio and video,30,F,176,19834820
+Electronics,Audio and video,30,M,179,19549080
+Electronics,Audio and video,40,F,168,18053430
+Electronics,Audio and video,50,M,28,3668680
+Electronics,Audio and video,20under,M,21,3597660
+Electronics,Audio and video,50,F,35,3272200
+Electronics,Audio and video,20under,F,27,3105730
+Electronics,Cameras,30,M,212,25714620
+Electronics,Cameras,30,F,168,19809800
+Electronics,Cameras,40,M,177,19359390
+Electronics,Cameras,40,F,158,17173270
+Electronics,Cameras,50,M,34,4058610
+Electronics,Cameras,20under,F,31,3567340
+Electronics,Cameras,20under,M,30,3109240
+Electronics,Cameras,50,F,17,1880960
+Electronics,Computers,40,M,172,22060560
+Electronics,Computers,30,M,195,21726020
+Electronics,Computers,30,F,178,20686370
+Electronics,Computers,40,F,166,17747100
+Electronics,Computers,50,F,26,3452110
+Electronics,Computers,50,M,25,2907670
+Electronics,Computers,20under,F,27,2457370
+Electronics,Computers,20under,M,21,1744010
+Electronics,Mobiles,40,M,217,22751660
+Electronics,Mobiles,30,M,194,21752180
+Electronics,Mobiles,40,F,177,21218740
+Electronics,Mobiles,30,F,169,19090820
+Electronics,Mobiles,20under,M,35,4630680
+Electronics,Mobiles,50,F,30,3838130
+Electronics,Mobiles,50,M,29,3741790
+Electronics,Mobiles,20under,F,25,2205600
+Electronics,Personal Appliances,40,M,205,25316160
+Electronics,Personal Appliances,40,F,179,20752630
+Electronics,Personal Appliances,30,M,185,19779460
+Electronics,Personal Appliances,30,F,168,18233730
+Electronics,Personal Appliances,20under,F,29,3201950
+Electronics,Personal Appliances,50,F,21,2773500
+Electronics,Personal Appliances,50,M,20,2389020
+Electronics,Personal Appliances,20under,M,16,1544830
+Footwear,Kids,30,F,182,22020650
+Footwear,Kids,40,F,186,21697950
+Footwear,Kids,40,M,175,19436310
+Footwear,Kids,30,M,177,19168910
+Footwear,Kids,50,F,36,4555340
+Footwear,Kids,20under,M,31,4096810
+Footwear,Kids,50,M,29,2537980
+Footwear,Kids,20under,F,24,1783450
+Footwear,Kids,50,,1,115350
+Footwear,Mens,30,M,180,19793330
+Footwear,Mens,40,M,170,18931230
+Footwear,Mens,40,F,176,18922050
+Footwear,Mens,30,F,163,18748340
+Footwear,Mens,50,M,29,3495480
+Footwear,Mens,20under,F,31,3467270
+Footwear,Mens,50,F,25,2509830
+Footwear,Mens,20under,M,21,2306650
+Footwear,Women,30,F,197,21451040
+Footwear,Women,40,F,186,19505800
+Footwear,Women,40,M,177,19035670
+Footwear,Women,30,M,182,18535050
+Footwear,Women,20under,F,32,4180370
+Footwear,Women,50,M,37,4098580
+Footwear,Women,50,F,34,3357110
+Footwear,Women,20under,M,28,2450170
+Home and kitchen,Bath,30,F,191,21568540
+Home and kitchen,Bath,40,F,185,21318730
+Home and kitchen,Bath,40,M,192,20727340
+Home and kitchen,Bath,30,M,177,18656010
+Home and kitchen,Bath,20under,M,29,2957450
+Home and kitchen,Bath,20under,F,29,2712780
+Home and kitchen,Bath,50,M,28,2699730
+Home and kitchen,Bath,50,F,21,2346240
+Home and kitchen,Bath,50,,1,246750
+Home and kitchen,Furnishing,30,M,209,23805070
+Home and kitchen,Furnishing,30,F,175,19546780
+Home and kitchen,Furnishing,40,M,181,18115240
+Home and kitchen,Furnishing,40,F,166,18088710
+Home and kitchen,Furnishing,20under,F,33,4061300
+Home and kitchen,Furnishing,50,M,31,3521760
+Home and kitchen,Furnishing,50,F,29,3447430
+Home and kitchen,Furnishing,20under,M,23,2578910
+Home and kitchen,Kitchen,40,M,215,24656320
+Home and kitchen,Kitchen,40,F,186,22787080
+Home and kitchen,Kitchen,30,M,176,19113010
+Home and kitchen,Kitchen,30,F,170,16115920
+Home and kitchen,Kitchen,20under,M,27,3000390
+Home and kitchen,Kitchen,50,F,29,2452410
+Home and kitchen,Kitchen,50,M,24,2145300
+Home and kitchen,Kitchen,20under,F,29,1877080
+Home and kitchen,Tools,40,M,197,21223770
+Home and kitchen,Tools,30,M,193,20651690
+Home and kitchen,Tools,40,F,185,20280870
+Home and kitchen,Tools,30,F,191,20166420
+Home and kitchen,Tools,50,M,37,3724790
+Home and kitchen,Tools,20under,M,26,3592060
+Home and kitchen,Tools,50,F,28,3357590
+Home and kitchen,Tools,20under,F,28,2826710

@@ -366,15 +366,48 @@ class: inverse center middle
 
 #### dataset
 
-```{r1}
-a <- data.frame(fruit = c('apple', 'banana', 'kiwi'),
-                sweet = c(4, 3, 6))
+<img src ="fig176.png", width = 100%>
 
-b <- data.frame(fruit = c('peer', 'banana', 'strawberry'),
-                sweet = c(3, 3, 7))
-a
-b
-```
+<img src ="fig177.png", width = 40%>
 
+]
+
+.pull-right[
+
+#### Inner Join
+
+<img src ="fig178.png", width = 100%>
+
+#### Left Join
+
+<img src ="fig179.png", width = 100%>
+
+]
+
+---
+
+### 7. inner_join, left_join, full_join
+
+.pull-left[
+
+#### dataset
+
+<img src ="fig177.png", width = 30%>
+
+#### Full Join
+
+<img src ="fig180.png", width = 70%>
+
+]
+
+.pull-right[
+
+#### Semi Join
+
+<img src ="fig181.png", width = 100%>
+
+#### Anti Join
+
+<img src ="fig182.png", width = 100%>
 
 ]
